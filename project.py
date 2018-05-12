@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QPushButton, QLineEdit, QHBoxLayout, QTextBrowser, QGroupBox, QComboBox
+=======
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QPushButton, QLineEdit, QHBoxLayout, QTextBrowser, QGroupBox, QScrollArea
+>>>>>>> 96fd8ce652c4d726ce76369f3362df6a36849052
 from urllib.request import Request,urlopen
-from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtCore import pyqtSlot, Qt
 from PyQt5.QtGui import QPixmap, QColor
 from bs4 import BeautifulSoup
 from io import BytesIO
@@ -23,6 +27,7 @@ class Window1(QWidget):
         self.pic = []
         self.image = []
 
+
         hbox = QHBoxLayout()
         vbox = QVBoxLayout()
 
@@ -39,6 +44,7 @@ class Window1(QWidget):
         hbox.addWidget(self.mySearch)
         hbox.addWidget(self.searchButton)
         vbox.addLayout(hbox)
+        #self.setLayout(vbox)
 
         # scroll = QtGui.QScrollArea()
         # scroll.setWidget(QWidget)
@@ -50,10 +56,27 @@ class Window1(QWidget):
             #setting the data on the pic list
             self.pic[i].setPixmap(self.image[i])
             vbox.addWidget(self.pic[i])
+         #Container Widget
+        widget = QWidget()
+        #Layout of Container Widget
+        #layout = QVBoxLayout(self)
+        widget.setLayout(vbox)
+
+        #Scroll Area Properties
+        scroll = QScrollArea()
+        scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        scroll.setWidgetResizable(True)
+        scroll.setWidget(widget)
+
+        #Scroll Area Layer add
+        vLayout = QVBoxLayout(self)
+        vLayout.addWidget(scroll)
+        self.setLayout(vLayout)
 
         # vbox.addWidget(self.)
 
-        self.setLayout(vbox)
+        #self.setLayout(vbox)
 
     @pyqtSlot()
     #when the 'go' button is clicked this function is called
