@@ -106,7 +106,7 @@ class Window1(QWidget):
     @pyqtSlot()
     def newWindow(self):
             self.goToWindow = filterImage()
-            self.goToWindow().show()
+            self.goToWindow.show()
 
     # @pyqtSlot()
     # def pictureClicked:
@@ -124,11 +124,13 @@ class filterImage(QWidget):
         hbox2 = QHBoxLayout()
         vbox2 = QVBoxLayout()
         self.filterDropdown = QComboBox()
-        self.addFilter.addItems(filterList)
+        self.filterDropdown.addItems(filterList)
         self.dropdownLabel = QLabel("")
 
         hbox2.addWidget(self.filterDropdown)
         hbox2.addWidget(self.dropdownLabel)
+        vbox2.addLayout(hbox2)
+        self.setLayout(vbox2)
 
     @pyqtSlot()
     def updateList(self):
