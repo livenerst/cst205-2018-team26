@@ -23,7 +23,7 @@ class Window1(QWidget):
         QWidget.setGeometry(self,45,45,400,300)
         self.pic = []
         self.image = []
-
+        self.buttons = []
 
         hbox = QHBoxLayout()
         vbox = QVBoxLayout()
@@ -52,7 +52,11 @@ class Window1(QWidget):
             self.image.append(QPixmap())
             #setting the data on the pic list
             self.pic[i].setPixmap(self.image[i])
+            self.button = QPushButton('',self)
+            self.button.hide()
             vbox.addWidget(self.pic[i])
+            vbox.addWidget(self.button)
+            self.buttons.append(self.button)
          #Container Widget
         widget = QWidget()
         #Layout of Container Widget
@@ -90,17 +94,19 @@ class Window1(QWidget):
                     webLinks.append(link.attrs['src'])
                     print(webLinks)
         #this for loop loop's through 3 lists: webLinks,image,pic at the same time
-        for wl,image,pic in zip(webLinks,self.image, self.pic):
+        for wl,image,pic,button in zip(webLinks,self.image, self.pic,self.buttons):
             #this grabs my links from my webLink
             response = requests.get(wl)
             #puts the data in the list in binary
             image.loadFromData(bytes(response.content))
             pic.setPixmap(image)
+            button.clicked.connect(self.newWindow)
+            button.show()
 
-        @pyqtSlot()
-        def newWindow(self):
-                self.goToWindow = filterImage()
-                self.goToWindow().show()
+    @pyqtSlot()
+    def newWindow(self):
+            self.goToWindow = filterImage()
+            self.goToWindow().show()
 
     # @pyqtSlot()
     # def pictureClicked:
