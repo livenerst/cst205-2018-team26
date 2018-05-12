@@ -97,6 +97,11 @@ class Window1(QWidget):
             image.loadFromData(bytes(response.content))
             pic.setPixmap(image)
 
+        @pyqtSlot()
+        def newWindow(self):
+                self.goToWindow = filterImage()
+                self.goToWindow().show()
+
     # @pyqtSlot()
     # def pictureClicked:
 
@@ -118,6 +123,11 @@ class filterImage(QWidget):
 
         hbox2.addWidget(self.filterDropdown)
         hbox2.addWidget(self.dropdownLabel)
+
+    @pyqtSlot()
+    def updateList(self):
+        chosenFilter = self.filterDropdown.currentText()
+        chosenIndex = self.filterDropdown.currentIndex()
 
 
 
