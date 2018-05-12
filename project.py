@@ -81,7 +81,12 @@ class Window1(QWidget):
     # def pictureClicked:
 
 
-
+#create a new window that displays the image that was clicked
+class filterImage(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle('Filter Image')
+        QWidget.setGeometry(self, 45, 45, 400, 300)
 
 
 
