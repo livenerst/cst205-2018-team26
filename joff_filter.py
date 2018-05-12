@@ -1,6 +1,13 @@
 import cv2
 import numpy as np
-image = cv2.imread('photo_de_profil.jpg',cv2.IMREAD_GRAYSCALE)
+image = cv2.imread('photo_de_profil.jpg')
+def blueImage(image) :
+    height, width = image.shape[:2]
+    for y in range (height) :
+        for x in range (width) :
+            pixel = image[y,x]
+            pixel = (pixel[0],int(pixel[1]*.3),int(pixel[2]*1.2))
+
 def filter1 (image) :
     height, width = image.shape[:2]
     for y in range (height) :
@@ -58,7 +65,3 @@ def filter_column_average (image) :
             pixel = [averageR,averageG,averageB]
             image[x,y] = pixel
     return image
-temp = image
-cv2.imshow('image',laplace_filter(temp,laplace))
-cv2.waitKey(0)
-cv2.destroyAllWindows()
