@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QPushButton, QLineEdit, QHBoxLayout, QTextBrowser, QGroupBox, QComboBox
-=======
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QPushButton, QLineEdit, QHBoxLayout, QTextBrowser, QGroupBox, QScrollArea
->>>>>>> 96fd8ce652c4d726ce76369f3362df6a36849052
+
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QPushButton, QLineEdit, QHBoxLayout, QTextBrowser, QGroupBox, QScrollArea, QComboBox
 from urllib.request import Request,urlopen
 from PyQt5.QtCore import pyqtSlot, Qt
 from PyQt5.QtGui import QPixmap, QColor
