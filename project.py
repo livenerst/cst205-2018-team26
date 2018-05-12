@@ -3,12 +3,17 @@ from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QPushBut
 from urllib.request import Request,urlopen
 from PyQt5.QtCore import pyqtSlot, Qt
 from PyQt5.QtGui import QPixmap, QColor
+from functools import partial
 from bs4 import BeautifulSoup
 from io import BytesIO
 from PIL import Image
 import requests
 import sys
 import ssl
+
+global pic
+global image
+global buttons
 
 class Window1(QWidget):
     def __init__(self):
@@ -21,6 +26,7 @@ class Window1(QWidget):
         #title of the Application
         self.setWindowTitle('Search Image Url')
         QWidget.setGeometry(self,45,45,400,300)
+
         self.pic = []
         self.image = []
         self.buttons = []
@@ -52,7 +58,7 @@ class Window1(QWidget):
             self.image.append(QPixmap())
             #setting the data on the pic list
             self.pic[i].setPixmap(self.image[i])
-            self.button = QPushButton('',self)
+            self.button = QPushButton('Button',self)
             self.button.hide()
             vbox.addWidget(self.pic[i])
             vbox.addWidget(self.button)
@@ -100,12 +106,13 @@ class Window1(QWidget):
             #puts the data in the list in binary
             image.loadFromData(bytes(response.content))
             pic.setPixmap(image)
-            button.clicked.connect(self.newWindow)
+            #takes in 
+            button.clicked.connect(partial(self.newWindow, img=image))
             button.show()
 
     @pyqtSlot()
-    def newWindow(self):
-            self.goToWindow = filterImage()
+    def newWindow(self, **kwargs):
+            self.goToWindow = filterImage(kwargs['img'])
             self.goToWindow.show()
 
     # @pyqtSlot()
@@ -117,7 +124,7 @@ class Window1(QWidget):
 filterList = ["Select", "red", "green", "blue", "solarize", "grey filter progressive", "grey"]
 
 class filterImage(QWidget):
-    def __init__(self):
+    def __init__(self, img):
         super().__init__()
         self.setWindowTitle('Filter Image')
         QWidget.setGeometry(self, 45, 45, 400, 300)
@@ -126,9 +133,11 @@ class filterImage(QWidget):
         self.filterDropdown = QComboBox()
         self.filterDropdown.addItems(filterList)
         self.dropdownLabel = QLabel("")
-
+        self.image = QLabel()
+        self.image.setPixmap(img)
         hbox2.addWidget(self.filterDropdown)
         hbox2.addWidget(self.dropdownLabel)
+        vbox2.addWidget(self.image)
         vbox2.addLayout(hbox2)
         self.setLayout(vbox2)
 
