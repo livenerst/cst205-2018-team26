@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QPushButton, QLineEdit, QHBoxLayout, QTextBrowser, QGroupBox
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QPushButton, QLineEdit, QHBoxLayout, QTextBrowser, QGroupBox, QComboBox
 from urllib.request import Request,urlopen
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QPixmap, QColor
@@ -82,13 +82,22 @@ class Window1(QWidget):
 
 
 #create a new window that displays the image that was clicked
+
+filterList = ["Select", "red", "green", "blue", "solarize", "grey filter progressive", "grey"]
+
 class filterImage(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('Filter Image')
         QWidget.setGeometry(self, 45, 45, 400, 300)
+        hbox2 = QHBoxLayout()
+        vbox2 = QVBoxLayout()
+        self.filterDropdown = QComboBox()
+        self.addFilter.addItems(filterList)
+        self.dropdownLabel = QLabel("")
 
-
+        hbox2.addWidget(self.filterDropdown)
+        hbox2.addWidget(self.dropdownLabel)
 
 
 
