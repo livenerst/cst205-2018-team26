@@ -10,6 +10,8 @@ from PIL import Image
 import requests
 import sys
 import ssl
+import filters
+import joff_filter
 
 global pic
 global image
@@ -106,7 +108,7 @@ class Window1(QWidget):
             #puts the data in the list in binary
             image.loadFromData(bytes(response.content))
             pic.setPixmap(image)
-            #takes in 
+            #takes in
             button.clicked.connect(partial(self.newWindow, img=image))
             button.show()
 
@@ -121,7 +123,8 @@ class Window1(QWidget):
 
 #create a new window that displays the image that was clicked
 
-filterList = ["Select", "red", "green", "blue", "solarize", "grey filter progressive", "grey"]
+filterList = ["Select", "red", "green", "blue", "grey filter progressive", "grey"]
+filterFunctions = [redImage, greenImage, blueImage, grey_filter_progressive, grey_filter]
 
 class filterImage(QWidget):
     def __init__(self, img):
@@ -145,7 +148,8 @@ class filterImage(QWidget):
     def updateList(self):
         chosenFilter = self.filterDropdown.currentText()
         chosenIndex = self.filterDropdown.currentIndex()
-
+        if chosenIndex:
+            filterFunctions[chosenIndex - 1]
 
 
 app = QApplication(sys.argv)
