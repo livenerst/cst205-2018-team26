@@ -154,8 +154,9 @@ class filterImage(QWidget):
     def updateList(self,image):
         chosenFilter = self.filterDropdown.currentText()
         chosenIndex = self.filterDropdown.currentIndex()
+        temp = image.copy()
         if chosenIndex:
-            cv2.imshow('image',filterFunctions[chosenIndex - 1](image))
+            cv2.imshow('image',filterFunctions[chosenIndex - 1](temp))
 
 
 

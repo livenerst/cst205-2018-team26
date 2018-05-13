@@ -8,6 +8,7 @@ def blueImage(image) :
             pixel = image[y,x]
             pixel = (pixel[0],int(pixel[1]*.3),int(pixel[2]*1.2))
             image[y,x] = pixel
+    return image
 
 def redImage(image) :
     height, width = image.shape[:2]
@@ -16,6 +17,7 @@ def redImage(image) :
             pixel = image[y,x]
             pixel = (int(pixel[0]*2.5),int(pixel[1]*.3),pixel[2])
             image[y,x] = pixel
+    return image
 def greenImage(image) :
     height, width = image.shape[:2]
     for y in range (height) :
@@ -23,7 +25,7 @@ def greenImage(image) :
             pixel = image[y,x]
             pixel = (int(pixel[0]*2.5),int(pixel[1]*.3),pixel[2])
             image[y,x] = (int(pixel[0]*.2),int(pixel[1]*2.5),int(pixel[2]*.2))
-
+    return image
 def filter1 (image) :
     height, width = image.shape[:2]
     for y in range (height) :
