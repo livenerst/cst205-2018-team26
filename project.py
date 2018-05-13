@@ -1,4 +1,9 @@
-
+'''Course: CST205
+Title: WebScrapper
+Abstract: Allows a user to input a website and the program scrapes the first 8 images, allowing filters to modify the image they select.'
+        (the websites that work on this program are www.nytimes.com and www.magazines.com)
+Authors: Elizabeth Hernandez, Mason Emura, Joffrey Chambon, Miguel Placido
+Date: 12 May 2018''''
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QPushButton, QLineEdit, QHBoxLayout, QTextBrowser, QGroupBox, QScrollArea, QComboBox
 from urllib.request import Request,urlopen
 from PyQt5.QtCore import pyqtSlot, Qt
@@ -18,6 +23,8 @@ global pic
 global image
 global buttons
 
+# Created By: Elizabeth Hernandez
+# Description: the Window1 creates the first web page that the user uses
 class Window1(QWidget):
     def __init__(self):
         super().__init__()
@@ -50,11 +57,10 @@ class Window1(QWidget):
         hbox.addWidget(self.mySearch)
         hbox.addWidget(self.searchButton)
         vbox.addLayout(hbox)
-        #self.setLayout(vbox)
 
-        # scroll = QtGui.QScrollArea()
-        # scroll.setWidget(QWidget)
-
+        # Created By: Elizabeth Hernandez
+        # Description: the loop allows for 8 labels to be created for every image that is scraped
+        # and is been added to a list called image which in turn is added to a list called pic
         #Labels created
         for i in range(8):
             self.pic.append(QLabel())
@@ -87,7 +93,9 @@ class Window1(QWidget):
         # vbox.addWidget(self.)
 
         #self.setLayout(vbox)
-
+'''Created By: Elizabeth Hernandez
+Description: the following function allows for the images to be scrapped from the website typed on the QLineEdit
+and displayed onto the PyQt5 application'''
     @pyqtSlot()
     #when the 'go' button is clicked this function is called
     def goClicked(self):
@@ -110,10 +118,11 @@ class Window1(QWidget):
             pic.setPixmap(image)
             opencv_image = np.asarray(bytearray(response.content), dtype="uint8")
             opencv_image = cv2.imdecode(opencv_image, cv2.IMREAD_COLOR)
-            #takes in
+            #partial takes in a function and arguments
             button.clicked.connect(partial(self.newWindow, img=image, img_cv=opencv_image))
             button.show()
-
+'''Created By: Elizabeth Hernandez
+Description: allows for the button clicked for any image to call a new window where the picture picked is displayed'''
     @pyqtSlot()
     def newWindow(self, **kwargs):
             self.goToWindow = filterImage(kwargs['img'],kwargs['img_cv'])
@@ -124,7 +133,7 @@ class Window1(QWidget):
 
 
 #both lists made by Mason Emura
-#stores the filter names and filter functions in their own seperate lists 
+#stores the filter names and filter functions in their own seperate lists
 filterList = ["Select", "red", "green", "blue", "grey filter progressive", "grey"]
 filterFunctions = [redImage, greenImage, blueImage, grey_filter_progressive, grey_filter]
 '''
