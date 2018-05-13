@@ -124,7 +124,6 @@ class Window1(QWidget):
 #create a new window that displays the image that was clicked
 
 filterList = ["Select", "red", "green", "blue", "grey filter progressive", "grey"]
-filterFunctions = [redImage, greenImage, blueImage, grey_filter_progressive, grey_filter]
 
 class filterImage(QWidget):
     def __init__(self, img):
@@ -148,8 +147,7 @@ class filterImage(QWidget):
     def updateList(self):
         chosenFilter = self.filterDropdown.currentText()
         chosenIndex = self.filterDropdown.currentIndex()
-        if chosenIndex:
-            filterFunctions[chosenIndex - 1]
+
 
 
 app = QApplication(sys.argv)
