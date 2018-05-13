@@ -10,14 +10,9 @@ from PIL import Image
 import requests
 import sys
 import ssl
-<<<<<<< HEAD
-import filters
-import joff_filter
-=======
 from joff_filter import *
 import cv2
 import numpy as np
->>>>>>> 4b137946d85e42d857bf41ac659ec8c5bb40d23e
 
 global pic
 global image
@@ -144,7 +139,7 @@ class filterImage(QWidget):
         self.button = QPushButton('Convert',self)
         self.filterDropdown = QComboBox()
         self.filterDropdown.addItems(filterList)
-        self.filterDropdown.currentIndexChanged.connect(lambda : self.apply_filter(img_cv,str(filterDropdown.currentText())))
+        self.filterDropdown.currentIndexChanged.connect(lambda : self.updateList(img_cv))
         self.dropdownLabel = QLabel("")
         self.image = QLabel()
         self.image.setPixmap(img)
@@ -156,11 +151,11 @@ class filterImage(QWidget):
         self.setLayout(vbox2)
 
     @pyqtSlot()
-    def updateList(self):
+    def updateList(self,image):
         chosenFilter = self.filterDropdown.currentText()
         chosenIndex = self.filterDropdown.currentIndex()
         if chosenIndex:
-            filterFunctions[chosenIndex - 1]        
+            cv2.imshow('image',filterFunctions[chosenIndex - 1](image))
 
 
 
