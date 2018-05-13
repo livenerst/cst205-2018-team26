@@ -136,7 +136,6 @@ class filterImage(QWidget):
         QWidget.setGeometry(self, 45, 45, 400, 300)
         hbox2 = QHBoxLayout()
         vbox2 = QVBoxLayout()
-        self.button = QPushButton('Convert',self)
         self.filterDropdown = QComboBox()
         self.filterDropdown.addItems(filterList)
         self.filterDropdown.currentIndexChanged.connect(lambda : self.updateList(img_cv))
