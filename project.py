@@ -123,8 +123,12 @@ class Window1(QWidget):
 #both lists made by Mason Emura
 filterList = ["Select", "red", "green", "blue", "grey filter progressive", "grey"]
 filterFunctions = [redImage, greenImage, blueImage, grey_filter_progressive, grey_filter]
-
-#filterImage made by Mason Emura
+'''
+filterImage made by Mason Emura
+This class is the second window in our program
+It displays the image that the user clicked
+On this page the user can apply filters to that image
+'''
 class filterImage(QWidget):
     def __init__(self, img,img_cv):
         super().__init__()
