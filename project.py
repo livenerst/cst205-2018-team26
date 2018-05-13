@@ -10,8 +10,14 @@ from PIL import Image
 import requests
 import sys
 import ssl
+<<<<<<< HEAD
 import filters
 import joff_filter
+=======
+from joff_filter import *
+import cv2
+import numpy as np
+>>>>>>> 4b137946d85e42d857bf41ac659ec8c5bb40d23e
 
 global pic
 global image
@@ -108,13 +114,15 @@ class Window1(QWidget):
             #puts the data in the list in binary
             image.loadFromData(bytes(response.content))
             pic.setPixmap(image)
+            opencv_image = np.asarray(bytearray(response.content), dtype="uint8")
+            opencv_image = cv2.imdecode(opencv_image, cv2.IMREAD_COLOR)
             #takes in
-            button.clicked.connect(partial(self.newWindow, img=image))
+            button.clicked.connect(partial(self.newWindow, img=image, img_cv=opencv_image))
             button.show()
 
     @pyqtSlot()
     def newWindow(self, **kwargs):
-            self.goToWindow = filterImage(kwargs['img'])
+            self.goToWindow = filterImage(kwargs['img'],kwargs['img_cv'])
             self.goToWindow.show()
 
     # @pyqtSlot()
@@ -126,14 +134,16 @@ class Window1(QWidget):
 filterList = ["Select", "red", "green", "blue", "grey filter progressive", "grey"]
 
 class filterImage(QWidget):
-    def __init__(self, img):
+    def __init__(self, img,img_cv):
         super().__init__()
         self.setWindowTitle('Filter Image')
         QWidget.setGeometry(self, 45, 45, 400, 300)
         hbox2 = QHBoxLayout()
         vbox2 = QVBoxLayout()
+        self.button = QPushButton('Convert',self)
         self.filterDropdown = QComboBox()
         self.filterDropdown.addItems(filterList)
+        self.filterDropdown.currentIndexChanged.connect(lambda : self.apply_filter(img_cv,str(filterDropdown.currentText())))
         self.dropdownLabel = QLabel("")
         self.image = QLabel()
         self.image.setPixmap(img)
@@ -141,12 +151,19 @@ class filterImage(QWidget):
         hbox2.addWidget(self.dropdownLabel)
         vbox2.addWidget(self.image)
         vbox2.addLayout(hbox2)
+        vbox2.addWidget(self.button)
         self.setLayout(vbox2)
 
     @pyqtSlot()
     def updateList(self):
         chosenFilter = self.filterDropdown.currentText()
         chosenIndex = self.filterDropdown.currentIndex()
+    def apply_filter(self,img,function) :
+        image = filter1(img)
+        cv2.imshow('image',image)
+
+
+
 
 
 
