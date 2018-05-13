@@ -3,7 +3,7 @@ Title: WebScrapper
 Abstract: Allows a user to input a website and the program scrapes the first 8 images, allowing filters to modify the image they select.'
         (the websites that work on this program are www.nytimes.com and www.magazines.com)
 Authors: Elizabeth Hernandez, Mason Emura, Joffrey Chambon, Miguel Placido
-Date: 12 May 2018''''
+Date: 12 May 2018'''
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QPushButton, QLineEdit, QHBoxLayout, QTextBrowser, QGroupBox, QScrollArea, QComboBox
 from urllib.request import Request,urlopen
 from PyQt5.QtCore import pyqtSlot, Qt
@@ -93,9 +93,10 @@ class Window1(QWidget):
         # vbox.addWidget(self.)
 
         #self.setLayout(vbox)
-'''Created By: Elizabeth Hernandez
-Description: the following function allows for the images to be scrapped from the website typed on the QLineEdit
-and displayed onto the PyQt5 application'''
+# Created By: Elizabeth Hernandez
+# Description: the following function allows for the images to be scrapped from the website typed on the QLineEdit
+# and displayed onto the PyQt5 application
+
     @pyqtSlot()
     #when the 'go' button is clicked this function is called
     def goClicked(self):
@@ -121,8 +122,8 @@ and displayed onto the PyQt5 application'''
             #partial takes in a function and arguments
             button.clicked.connect(partial(self.newWindow, img=image, img_cv=opencv_image))
             button.show()
-'''Created By: Elizabeth Hernandez
-Description: allows for the button clicked for any image to call a new window where the picture picked is displayed'''
+# Created By: Elizabeth Hernandez
+# Description: allows for the button clicked for any image to call a new window where the picture picked is displayed
     @pyqtSlot()
     def newWindow(self, **kwargs):
             self.goToWindow = filterImage(kwargs['img'],kwargs['img_cv'])
