@@ -36,6 +36,7 @@ def filter1 (image) :
             pixel[2] = (0.4*pixel[0]+4*pixel[1]+1.2*pixel[2])/4
             image[y,x] = pixel
     return image
+#Joffrey Chambon : This function applies progressively the grey filter on the image
 def grey_filter_progressive (image) :
     height, width = image.shape[:2]
     coeff = 1
@@ -47,6 +48,7 @@ def grey_filter_progressive (image) :
             image[x,y] = pixel
         coeff = coeff-(1/width)
     return image
+#Joffrey Chambon : This function applies the grey filter on the image
 def grey_filter (image) :
     height, width = image.shape[:2]
     for y in range (width) :
@@ -64,6 +66,7 @@ def revert_filter (image) :
             image [x,y] = image [-x,-y]
             image[x-height,y-width] = temp
     return image
+#This filter make the average of the columns in the image
 def filter_column_average (image) :
     height, width = image.shape[:2]
     for y in range (width) :
