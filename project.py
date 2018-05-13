@@ -120,15 +120,11 @@ class Window1(QWidget):
             self.goToWindow = filterImage(kwargs['img'],kwargs['img_cv'])
             self.goToWindow.show()
 
-    # @pyqtSlot()
-    # def pictureClicked:
-
-
-#create a new window that displays the image that was clicked
-
+#both lists made by Mason Emura
 filterList = ["Select", "red", "green", "blue", "grey filter progressive", "grey"]
 filterFunctions = [redImage, greenImage, blueImage, grey_filter_progressive, grey_filter]
 
+#filterImage made by Mason Emura
 class filterImage(QWidget):
     def __init__(self, img,img_cv):
         super().__init__()
@@ -149,6 +145,7 @@ class filterImage(QWidget):
         vbox2.addWidget(self.button)
         self.setLayout(vbox2)
 
+    #definition made by Mason Emura
     @pyqtSlot()
     def updateList(self,image):
         chosenFilter = self.filterDropdown.currentText()
@@ -158,22 +155,7 @@ class filterImage(QWidget):
             cv2.imshow('image',filterFunctions[chosenIndex - 1](temp))
 
 
-
-
-
-
 app = QApplication(sys.argv)
 w = Window1()
 w.show()
 sys.exit(app.exec_())
-
-
-# myUrl = input()
-
-# im1 = Image.open("fruit1.jpg")
-#
-# def negRed(pixel):
-#     return tuple(map(lambda a : 255 - a, pixel))
-# negList = map(negRed, im1.getdata())
-# im1.putdata(list(negList))
-# im1.save("negativeRed.jpg")
