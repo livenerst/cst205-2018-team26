@@ -123,8 +123,8 @@ class Window1(QWidget):
     # def pictureClicked:
 
 
-#create a new window that displays the image that was clicked
-
+#both lists made by Mason Emura
+#stores the filter names and filter functions in their own seperate lists 
 filterList = ["Select", "red", "green", "blue", "grey filter progressive", "grey"]
 filterFunctions = [redImage, greenImage, blueImage, grey_filter_progressive, grey_filter]
 '''
