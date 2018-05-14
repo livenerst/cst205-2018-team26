@@ -1,9 +1,11 @@
-'''Course: CST205
+'''
+Course: CST205
 Title: WebScrapper
 Abstract: Allows a user to input a website and the program scrapes the first 8 images, allowing filters to modify the image they select.'
         (the websites that work on this program are www.nytimes.com and www.magazines.com)
 Authors: Elizabeth Hernandez, Mason Emura, Joffrey Chambon, Miguel Placido
-Date: 12 May 2018'''
+Date: 12 May 2018
+'''
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QPushButton, QLineEdit, QHBoxLayout, QTextBrowser, QGroupBox, QScrollArea, QComboBox
 from urllib.request import Request,urlopen
 from PyQt5.QtCore import pyqtSlot, Qt
@@ -90,9 +92,6 @@ class Window1(QWidget):
         vLayout.addWidget(scroll)
         self.setLayout(vLayout)
 
-        # vbox.addWidget(self.)
-
-        #self.setLayout(vbox)
 # Created By: Elizabeth Hernandez
 # Description: the following function allows for the images to be scrapped from the website typed on the QLineEdit
 # and displayed onto the PyQt5 application
@@ -129,14 +128,12 @@ class Window1(QWidget):
             self.goToWindow = filterImage(kwargs['img'],kwargs['img_cv'])
             self.goToWindow.show()
 
-    # @pyqtSlot()
-    # def pictureClicked:
-
 
 #both lists made by Mason Emura
 #stores the filter names and filter functions in their own seperate lists
 filterList = ["Select", "red", "green", "blue", "grey filter progressive", "grey"]
 filterFunctions = [redImage, greenImage, blueImage, grey_filter_progressive, grey_filter]
+
 '''
 filterImage made by Mason Emura
 This class is the second window in our program
